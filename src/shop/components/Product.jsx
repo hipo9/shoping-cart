@@ -1,13 +1,12 @@
 import { useContext } from 'react';
-import { CartContext } from '../Contexts/cartContext/CartContext';
+import { CartContext } from '../context/CartContext/CartContext';
 
 // eslint-disable-next-line react/prop-types
 export const Product = ({ product }) => {
   // eslint-disable-next-line react/prop-types
-  const { title, image, category, price } = product;
-  const { cart, addProductToCart, removeFromCart } = useContext(CartContext);
-
-  const checkProductIncart = () => cart.some((item) => item.id === product.id);
+  const { title, image, category, price, id } = product;
+  const { cart, addItemtoCart, removeFromCart } = useContext(CartContext);
+  const checkProductIncart = () => cart.some((item) => item.id === id);
 
   return (
     <ul className='product'>
@@ -26,11 +25,10 @@ export const Product = ({ product }) => {
           <p>ver detalles</p>
         </div>
 
+        {/* <button onClick={() => addItemtoCart(product)}>Add cart</button> */}
         <button
           onClick={() =>
-            checkProductIncart()
-              ? removeFromCart(product)
-              : addProductToCart(product)
+            checkProductIncart() ? removeFromCart(id) : addItemtoCart(product)
           }
           className={checkProductIncart() ? 'btn-danger' : 'product__btn'}>
           Add cart

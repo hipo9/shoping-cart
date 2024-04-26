@@ -14,13 +14,10 @@
     &__btn {
         @include m.button(v.$secondary, v.$white);
         position: absolute;
-        right: 1rem;
+        right: 2.5rem;
         top: 2rem;
-        position: fixed;
         z-index: 2;
         margin: 0;
-        
-
     }
 
 }
