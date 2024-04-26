@@ -1,0 +1,7 @@
+@use '../../scss/base/variables'as v;
+
+.layout {
+    width: 100%;
+    height: auto;
+    background-color: v.$dark;
+}

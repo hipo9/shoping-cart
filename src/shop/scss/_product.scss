@@ -1,0 +1,61 @@
+@use '../../scss/base/variables'as v;
+@use '../../scss/base/mixins'as m;
+
+.product {
+    display: flex;
+    gap: 2rem;
+    box-shadow: 0 0 1px v.$black;
+    // background-color: green;
+
+
+    &__img {
+        filter: drop-shadow(0 0 25px v.$dark);
+        // background-color: #<color-del-fondo-que-deseas>;
+        /* Reemplaza con el color del fondo que deseas */
+        min-width: 15rem;
+        max-width: 15rem;
+        height: 100%;
+    }
+
+    &__description {
+        display: flex;
+        flex-direction: column;
+        font-size: 1.6rem;
+        justify-content: space-between;
+
+    }
+
+    &__container-txt {
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    &__title,
+    &__txt {
+        // white-space: nowrap;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+        width: 180px;
+        white-space: nowrap;
+        /* Evita que el texto se ajuste automáticamente */
+        overflow: hidden;
+        /* Oculta el texto que excede el contenedor */
+        text-overflow: ellipsis;
+        /* Trunca el texto sin puntos suspensivos */
+    }
+
+    &__title {
+        font-size: 1.6rem;
+    }
+
+    &__txt {
+        margin-top: .8rem;
+    }
+
+    &__btn {
+        @include m.button(v.$primary, v.$white);
+        height: 100%;
+        height: 5rem;
+    }
+}

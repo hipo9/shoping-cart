@@ -1,0 +1,26 @@
+@use '../../scss/base/mixins'as m;
+@use '../../scss/base/variables'as v;
+
+.header {
+    // transition: all 0.3s ease;
+    transition: all 0.4s ease-out;
+
+    // background-color: red;
+    &__nav {
+        width: 100%;
+        height: 15rem;
+    }
+
+    &__btn {
+        @include m.button(v.$secondary, v.$white);
+        position: absolute;
+        right: 1rem;
+        top: 2rem;
+        position: fixed;
+        z-index: 2;
+        margin: 0;
+        
+
+    }
+
+}

@@ -1,0 +1,78 @@
+@use './variables'as v;
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: v.$fuentePrincipal;
+    font-size: 2rem;
+    line-height: 1.5;
+    color: v.$white;
+}
+
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+ul,
+li {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+/************************
+ * ESTILO PARA LA TABLA *
+ ************************/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+thead {
+    border-bottom: 2px solid v.$secondary;
+}
+
+th {
+    padding: 1rem;
+
+    text-align: center;
+}
+
+td {
+
+    padding: 8px;
+    padding: 8px;
+    text-align: center;
+    font-size: 1.6rem;
+
+}
+
+
+
+/* Estilo para filas alternas (opcional)(crear el efecto de rallitas por cada escalosn(tr)) */
+tr:nth-child(even) {
+    border-top: 1px solid v.$secondary;
+
+    /* Color de fondo para filas pares */
+}
+
+.danger{
+    background-color: v.$danger;
+}
