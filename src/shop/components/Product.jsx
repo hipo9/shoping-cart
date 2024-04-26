@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext/CartContext';
+import { AddToCartIcon, RemoveFromCartIcon } from '../../components/Iconos';
 
 // eslint-disable-next-line react/prop-types
 export const Product = ({ product }) => {
@@ -30,8 +31,9 @@ export const Product = ({ product }) => {
           onClick={() =>
             checkProductIncart() ? removeFromCart(id) : addItemtoCart(product)
           }
-          className={checkProductIncart() ? 'btn-danger' : 'product__btn'}>
-          Add cart
+          className={checkProductIncart() ? 'btn-danger' : 'btn-primary'}>
+          {checkProductIncart() ? <RemoveFromCartIcon /> : <AddToCartIcon />}
+          <label className='product__label-btn'>Add cart</label>
         </button>
       </div>
     </ul>

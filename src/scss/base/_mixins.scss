@@ -29,16 +29,19 @@
 	background-color: $bgColor;
 	padding: 1.5rem 4rem;
 	color: $colorTexto;
-	margin-top: 2rem;
+	margin: 0;
 	font-size: 2rem;
 	font-weight: 400;
-	display: block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
 	font-weight: 700;
 	border: none;
 	transition-property: background-color;
 	transition-duration: .3s;
 	text-align: center;
-	
+
 
 	@include tablet {
 		width: auto;

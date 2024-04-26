@@ -1,7 +1,10 @@
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext/CartContext';
+import { RemoveFromCartIcon } from '../../components/Iconos';
 
+// eslint-disable-next-line react/prop-types
 export const Cart = ({ toggle }) => {
+  console.log('cart: ',toggle);
   const { cart, removeFromCart } = useContext(CartContext);
 
   const totaToPay = cart.reduce(
@@ -36,7 +39,7 @@ export const Cart = ({ toggle }) => {
                   <td>{price}</td>
                   <td className='cart__container-del'>
                     <p className='cart__delete' onClick={()=>removeFromCart(id)}>
-                      X
+                    <RemoveFromCartIcon />
                     </p>
                   </td>
                 </tr>

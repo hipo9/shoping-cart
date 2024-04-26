@@ -53,9 +53,8 @@
         margin-top: .8rem;
     }
 
-    &__btn {
-        @include m.button(v.$primary, v.$white);
-        height: 100%;
-        height: 5rem;
+    &__label-btn {
+         margin-left: .5rem;
     }
+
 }
