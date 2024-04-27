@@ -1,0 +1,12 @@
+@use './mixins'as m;
+@use './variables'as v;
+
+
+.btn-danger {
+    @include m.button(v.$danger, v.$white);
+}
+
+.btn-primary {
+    @include m.button(v.$primary, v.$white);
+    
+}

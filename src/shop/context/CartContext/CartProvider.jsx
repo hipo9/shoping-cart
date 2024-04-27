@@ -17,17 +17,25 @@ export const CartProvider = ({ children }) => {
   const removeFromCart = (id) => {
     dispatch({ type: CART_ACTION_TYPES.REMOVE_ITEM_FROM_CART, payload: id });
   };
-  const decreaseQuantity = (id) => {
+  const decreaseQuantity = (id, quantity) => {
+    if (quantity === MIN_ITEMS) return;
+
     dispatch({
       type: CART_ACTION_TYPES.DECREASE_QUANTITY,
       payload: { id, MIN_ITEMS },
     });
   };
-  const increaseQuantity = (id) => {
+  const increaseQuantity = (id, quantity) => {
+    if (quantity === MAX_ITEMS) return;
     dispatch({
       type: CART_ACTION_TYPES.INCREASE_QUANTITY,
       payload: { id, MAX_ITEMS },
     });
+  };
+
+  const clearCart = () => {
+    
+    dispatch({ type: CART_ACTION_TYPES.CLEAR_CART });
   };
 
   return (
@@ -38,6 +46,7 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         decreaseQuantity,
         increaseQuantity,
+        clearCart
       }}>
       {children}
     </CartContext.Provider>

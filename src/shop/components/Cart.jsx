@@ -4,12 +4,12 @@ import { RemoveFromCartIcon } from '../../components/Iconos';
 
 // eslint-disable-next-line react/prop-types
 export const Cart = ({ toggle }) => {
-  console.log('cart: ', toggle);
   const {
     cart = [],
     removeFromCart,
     increaseQuantity,
     decreaseQuantity,
+    clearCart,
   } = useContext(CartContext);
 
   const totaToPay = cart.reduce(
@@ -48,13 +48,13 @@ export const Cart = ({ toggle }) => {
                           <div className='table__quantity'>
                             <button
                               className='table__btn'
-                              onClick={()=>increaseQuantity(id)}>
+                              onClick={() => increaseQuantity(id, quantity)}>
                               +
                             </button>
                             {quantity}
                             <button
                               className='table__btn'
-                              onClick={()=>decreaseQuantity(id)}>
+                              onClick={() => decreaseQuantity(id, quantity)}>
                               ˗˗
                             </button>
                           </div>
@@ -73,7 +73,7 @@ export const Cart = ({ toggle }) => {
                 </table>
               </div>
               <footer className='cart__footer'>
-                <button className='cart__clear-btn'>
+                <button className='cart__clear-btn' onClick={clearCart}>
                   <RemoveFromCartIcon />
                   Clear Cart
                 </button>

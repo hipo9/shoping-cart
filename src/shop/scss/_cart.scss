@@ -1,0 +1,127 @@
+@use '../../scss/base/variables'as v;
+@use '../../scss/base/mixins'as m;
+
+.cart {
+
+    width: 40rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    animation: fadeIn 0.3s ease-in;
+    /* Animación de aparición */
+    z-index: 1;
+    background-color: v.$body-secondary;
+    max-width: 45rem;
+    padding: 2rem 2rem 0 2rem;
+    border-top-right-radius: 6%;
+
+    &__header {
+        width: 100%;
+    }
+
+    &__title {
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    &__footer {
+        padding: 2rem 0 0 0;
+    }
+
+    &__clear-btn {
+        @include m.button(v.$danger, v.$white);
+        gap: 1rem;
+        height: 4rem;
+        min-width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    //Verificar si la altura es mayor a 400px
+    @if (45rem) {
+        overflow-y: auto;
+    }
+
+    &__container-del {
+        margin: auto 0;
+        padding: 0;
+        border: 0;
+    }
+
+    &__delete {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: v.$danger;
+
+        border-radius: 50%;
+        width: 3.5rem;
+        height: 3.5rem;
+        margin-left: 1rem;
+    }
+
+}
+
+.table {
+
+    &__th {
+        padding-top: 2rem;
+
+    }
+
+    &__td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &--title {
+
+            text-overflow: ellipsis;
+
+
+        }
+    }
+
+    &__quantity {
+        display: flex;
+        align-items: center;
+        gap: .5rem
+    }
+
+    &__btn {
+        @include m.button(v.$primary, v.$white);
+        width: 1rem;
+        padding: 1rem;
+        border-radius: .5rem;
+
+    }
+
+}
+
+
+
+/* Estilos para el scroll */
+.cart::-webkit-scrollbar {
+    width: 10px;
+    /* Ancho del scrollbar */
+}
+
+.cart::-webkit-scrollbar-thumb {
+    background-color: #888;
+    /* Color del thumb (el "botón" del scrollbar) */
+    border-radius: 5px;
+    /* Borde redondeado del thumb */
+}
+
+.cart::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    /* Color de fondo del scrollbar */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
