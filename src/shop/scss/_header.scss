@@ -12,24 +12,15 @@
     }
 
     &__btn {
-        background-color: v.$secondary;
+
+        @include m.floating-btn(v.$secondary, black);
         display: flex;
         justify-content: center;
         align-items: center;
         position: absolute;
-        right: 1rem;
         top: 1rem;
+        right: 1.6rem;
         z-index: 2;
-        margin: 0;
-        width: 5rem;
-        height: 5rem;
-        border-radius: 50%;
-
-
-        &:hover {
-        background-color: darken($color: v.$secondary, $amount: 10);
-
-        }
 
     }
 

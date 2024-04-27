@@ -33,7 +33,7 @@ export const Product = ({ product }) => {
           }
           className={checkProductIncart() ? 'btn-danger' : 'btn-primary'}>
           {checkProductIncart() ? <RemoveFromCartIcon /> : <AddToCartIcon />}
-          <label className='product__label-btn'>Add cart</label>
+          <label className='product__label-btn'>{checkProductIncart()? 'Cancel' : 'Add cart'}</label>
         </button>
       </div>
     </ul>

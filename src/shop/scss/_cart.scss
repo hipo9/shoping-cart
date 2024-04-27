@@ -2,7 +2,6 @@
 @use '../../scss/base/mixins'as m;
 
 .cart {
-
     width: 40rem;
     position: absolute;
     right: 1rem;
@@ -12,7 +11,7 @@
     z-index: 1;
     background-color: v.$body-secondary;
     max-width: 45rem;
-    padding: 2rem 2rem 0 2rem;
+    padding: 2rem 0;
     border-top-right-radius: 6%;
 
     &__header {
@@ -25,7 +24,8 @@
     }
 
     &__footer {
-        padding: 2rem 0 0 0;
+        padding: 2rem 2rem 0;
+
     }
 
     &__clear-btn {
@@ -36,15 +36,12 @@
         margin-bottom: 1rem;
     }
 
-    //Verificar si la altura es mayor a 400px
-    @if (45rem) {
-        overflow-y: auto;
-    }
 
     &__container-del {
         margin: auto 0;
         padding: 0;
         border: 0;
+        
     }
 
     &__delete {
@@ -52,20 +49,58 @@
         justify-content: center;
         align-items: center;
         background-color: v.$danger;
-
+        @include m.hover(v.$danger);
         border-radius: 50%;
         width: 3.5rem;
         height: 3.5rem;
         margin-left: 1rem;
+
+    }
+
+    &__container-table {
+
+        max-height: 45rem;
+        overflow-x: hidden;
+        padding: 0 1rem;
+
+        //Verificar si la altura es mayor a 400px para agregar el scroll
+        @if (45rem) {
+            overflow-y: auto;
+        }
+
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 5px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+            opacity: 0;
+        }
+
     }
 
 }
 
 .table {
+    max-height: 45rem;
+
+    &__row {
+        height: 10rem;
+        border-bottom: 1px solid v.$secondary;
+    }
+
+    &__img {
+        max-height: 5rem;
+        max-width: 4rem;
+    }
 
     &__th {
         padding-top: 2rem;
-
     }
 
     &__td {
@@ -73,10 +108,7 @@
         text-overflow: ellipsis;
 
         &--title {
-
             text-overflow: ellipsis;
-
-
         }
     }
 
@@ -91,30 +123,9 @@
         width: 1rem;
         padding: 1rem;
         border-radius: .5rem;
-
     }
-
 }
 
-
-
-/* Estilos para el scroll */
-.cart::-webkit-scrollbar {
-    width: 10px;
-    /* Ancho del scrollbar */
-}
-
-.cart::-webkit-scrollbar-thumb {
-    background-color: #888;
-    /* Color del thumb (el "botón" del scrollbar) */
-    border-radius: 5px;
-    /* Borde redondeado del thumb */
-}
-
-.cart::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-    /* Color de fondo del scrollbar */
-}
 
 @keyframes fadeIn {
     from {

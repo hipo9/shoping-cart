@@ -61,15 +61,13 @@ td {
     padding: 8px;
     text-align: center;
     font-size: 1.6rem;
-
 }
 
 
 
 /* Estilo para filas alternas (opcional)(crear el efecto de rallitas por cada escalosn(tr)) */
 tr:nth-child(even) {
-    border-top: 1px solid v.$secondary;
-
+    // border-top: 1px solid v.$secondary;
     /* Color de fondo para filas pares */
 }
 

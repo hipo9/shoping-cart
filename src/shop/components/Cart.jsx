@@ -1,9 +1,12 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CartContext } from '../context/CartContext/CartContext';
 import { RemoveFromCartIcon } from '../../components/Iconos';
+import { roundNumber } from '../utilities/roundNumber';
 
 // eslint-disable-next-line react/prop-types
 export const Cart = ({ toggle }) => {
+  const [state, setstate] = useState('hola - tonotos');
+
   const {
     cart = [],
     removeFromCart,
@@ -39,11 +42,17 @@ export const Cart = ({ toggle }) => {
                   </thead>
                   <tbody>
                     {cart?.map(({ image, title, price, quantity, id }) => (
-                      <tr key={id} className='cart__row'>
+                      <tr key={id} className='table__row'>
                         <td>
-                          <img src={image} alt={'imagen de' + title} />
+                          <img
+                            className='table__img'
+                            src={image}
+                            alt={'imagen de' + title}
+                          />
                         </td>
-                        <td className='table__td table__td--title'>{title}</td>
+                        <td className='table__td table__td--title'>
+                          {title.split(' ').slice(0, 3).join(' ')}
+                        </td>
                         <td>
                           <div className='table__quantity'>
                             <button
@@ -62,6 +71,7 @@ export const Cart = ({ toggle }) => {
                         <td>{price}</td>
                         <td className='cart__container-del'>
                           <p
+                          title='Eliminar'
                             className='cart__delete'
                             onClick={() => removeFromCart(id)}>
                             <RemoveFromCartIcon />
@@ -77,7 +87,7 @@ export const Cart = ({ toggle }) => {
                   <RemoveFromCartIcon />
                   Clear Cart
                 </button>
-                <strong>Total a pagar ${totaToPay}</strong>
+                <strong>Total to pay: ${roundNumber(totaToPay)}</strong>
               </footer>
             </>
           )}

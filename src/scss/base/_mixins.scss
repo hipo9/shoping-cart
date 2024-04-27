@@ -42,16 +42,38 @@
 	border: none;
 	cursor: pointer;
 	transition: background-color 0.3s, color 0.3s;
-
-
 	@include tablet {
 		width: auto;
 	}
-
 	&:hover {
 		background-color: darken($bgColor, 10%);
 	}
 }
+@mixin floating-btn($bg-color, $shadow-color: rgba(0, 0, 0, 0.3)) {
+	background-color: $bg-color;
+	color: #fff;
+	border: none;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	font-size: 24px;
+	text-align: center;
+	line-height: 50px;
+	cursor: pointer;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	box-shadow: 0px 4px 8px $shadow-color;
+	transition: all 0.3s ease;
+	
+  
+	&:hover {
+	  box-shadow: 0px 6px 12px $shadow-color;
+	  background-color: darken($color: $bg-color, $amount: 10%);
+	  transform: translateY(-2px);
+	}
+  }
+  
 
 @mixin grid($columnas, $espaciado) {
 	display: grid;
@@ -79,6 +101,13 @@
 
 @mixin flex-wrap {
 	flex-wrap: wrap;
+}
+
+@mixin hover($bg-color) {
+	&:hover {
+		background-color: darken($color: $bg-color, $amount: 10%);
+
+	}
 }
 
 @mixin heading {
