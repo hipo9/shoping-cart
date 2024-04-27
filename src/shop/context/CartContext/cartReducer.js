@@ -12,6 +12,23 @@ export const cartReducer = (state = [], action) => {
       return [...state, newProduct];
     case CART_ACTION_TYPES.REMOVE_ITEM_FROM_CART:
       return state.filter((item) => item.id !== payload);
+    case CART_ACTION_TYPES.INCREASE_QUANTITY:
+      return state.map((item) => {
+        if (item.id === payload.id && item.quantity < payload.MAX_ITEMS) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      });
+    case CART_ACTION_TYPES.DECREASE_QUANTITY:
+      return state.map((item) => {
+        if (item.id === payload.id && item.quantity > payload.MIN_ITEMS) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+        return item;
+      });
+
+    case CART_ACTION_TYPES.CLEAR_CART:
+      return (state = []);
     default:
       break;
   }
