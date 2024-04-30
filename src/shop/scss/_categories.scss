@@ -1,0 +1,9 @@
+@use '../../scss/base/variables'as v;
+@use '../../scss/base/mixins'as m;
+
+.filters {
+    &__categories {
+        @include m.custom-select;
+    }
+
+}

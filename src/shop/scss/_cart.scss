@@ -12,7 +12,7 @@
     background-color: v.$body-secondary;
     max-width: 45rem;
     padding: 2rem 0;
-    border-top-right-radius: 6%;
+    border-top-right-radius: 2.6rem;
 
     &__header {
         width: 100%;
@@ -41,7 +41,7 @@
         margin: auto 0;
         padding: 0;
         border: 0;
-        
+
     }
 
     &__delete {
@@ -60,8 +60,8 @@
     &__container-table {
 
         max-height: 45rem;
-        overflow-x: hidden;
         padding: 0 1rem;
+        overflow-x: hidden;
 
         //Verificar si la altura es mayor a 400px para agregar el scroll
         @if (45rem) {

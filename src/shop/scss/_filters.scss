@@ -1,0 +1,39 @@
+@use '../../scss/base/variables'as v;
+@use '../../scss/base/mixins'as m;
+
+.filters {
+
+    width: 45rem;
+    
+    margin: 0 auto;
+    // background-color: red;
+    @include m.flex-column-center;
+    transition: all 0.3s ease;
+
+    @include m.tablet {
+        
+        flex-direction: row;
+
+    }
+
+
+    &__label,
+    &__span {
+        font-size: 1.6rem;
+        margin: 0;
+    }
+
+
+
+    &__container-range {
+        margin: 1rem;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        // background-color: red;
+
+    }
+
+
+}

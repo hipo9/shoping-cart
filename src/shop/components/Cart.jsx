@@ -5,8 +5,6 @@ import { roundNumber } from '../utilities/roundNumber';
 
 // eslint-disable-next-line react/prop-types
 export const Cart = ({ toggle }) => {
-  const [state, setstate] = useState('hola - tonotos');
-
   const {
     cart = [],
     removeFromCart,
@@ -71,7 +69,7 @@ export const Cart = ({ toggle }) => {
                         <td>{price}</td>
                         <td className='cart__container-del'>
                           <p
-                          title='Eliminar'
+                            title='Eliminar'
                             className='cart__delete'
                             onClick={() => removeFromCart(id)}>
                             <RemoveFromCartIcon />

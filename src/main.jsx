@@ -4,7 +4,7 @@ import { MyStoreApp } from './MyStoreApp';
 import './styles.scss';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <MyStoreApp />
-  </React.StrictMode>
+  // </React.StrictMode>
 );

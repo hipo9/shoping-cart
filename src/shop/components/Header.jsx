@@ -1,6 +1,7 @@
-import { useId,  useState } from 'react';
+import { useId, useState } from 'react';
 import { Cart } from './Cart';
 import { CartIcon } from '../../components/Iconos';
+
 
 export const Header = () => {
   // const [show, setShow] = useState(false);
@@ -13,7 +14,10 @@ export const Header = () => {
 
   return (
     <header className='header'>
-      <nav className='header__nav'>
+      <div className='profile'>
+        <div className='header__profile'>
+          <img src='' alt='mi perfil' />
+        </div>
         <label className='header__btn' htmlFor={cartChecboxID}>
           <CartIcon />
         </label>
@@ -23,8 +27,7 @@ export const Header = () => {
           hidden
           onChange={handleToggleShowCart}
         />
-      </nav>
-
+      </div>
       <Cart toggle={toggle} />
     </header>
   );

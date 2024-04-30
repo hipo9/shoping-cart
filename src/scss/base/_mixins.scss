@@ -42,13 +42,16 @@
 	border: none;
 	cursor: pointer;
 	transition: background-color 0.3s, color 0.3s;
+
 	@include tablet {
 		width: auto;
 	}
+
 	&:hover {
 		background-color: darken($bgColor, 10%);
 	}
 }
+
 @mixin floating-btn($bg-color, $shadow-color: rgba(0, 0, 0, 0.3)) {
 	background-color: $bg-color;
 	color: #fff;
@@ -65,15 +68,78 @@
 	right: 20px;
 	box-shadow: 0px 4px 8px $shadow-color;
 	transition: all 0.3s ease;
-	
-  
+
+
 	&:hover {
-	  box-shadow: 0px 6px 12px $shadow-color;
-	  background-color: darken($color: $bg-color, $amount: 10%);
-	  transform: translateY(-2px);
+		box-shadow: 0px 6px 12px $shadow-color;
+		background-color: darken($color: $bg-color, $amount: 10%);
+		transform: translateY(-2px);
 	}
-  }
-  
+}
+
+// Mixin para estilizar un ComboBox con BEM
+@mixin custom-select {
+
+	&__wrapper {
+		position: relative;
+		display: inline-block;
+	}
+
+	&__select {
+		appearance: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		background-color: #ffffff;
+		border: 1px solid #ced4da;
+		border-radius: 0.25rem;
+		padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+		font-size: 1rem;
+		line-height: 1.5;
+
+		&:focus {
+			border-color: #80bdff;
+			box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+		}
+	}
+
+	&__arrow {
+		position: absolute;
+		top: 50%;
+		right: 0.75rem;
+		transform: translateY(-50%);
+		width: 0;
+		height: 0;
+		border-left: 4px solid transparent;
+		border-right: 4px solid transparent;
+		border-top: 4px solid #555;
+	}
+
+	&__select:focus~&__arrow {
+		border-top-color: #80bdff;
+	}
+}
+
+/* Importa el mixin */
+@mixin custom-scrollbar($track-color: #ccc, $thumb-color: #999, $thumb-hover-color: #666) {
+
+	&::-webkit-scrollbar {
+		width: 1.2rem;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: $track-color;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $thumb-color;
+		border-radius: 6px;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background-color: $thumb-hover-color;
+	}
+}
+
 
 @mixin grid($columnas, $espaciado) {
 	display: grid;

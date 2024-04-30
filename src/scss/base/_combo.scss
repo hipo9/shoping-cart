@@ -1,0 +1,42 @@
+/* Estilos para el componente ComboBox */
+.my-combobox {
+
+    width: 200px; // Ajusta según sea necesario
+height: 5rem;
+    button {
+        background-color: #ffffff; // Color de fondo
+        border: 1px solid #cccccc; // Borde
+        border-radius: 4px; // Bordes redondeados
+        padding: 0.5rem; // Espacio interno
+        cursor: pointer; // Cambia el cursor al pasar por encima
+        background-color: red;
+    }
+
+    ul {
+        background-color: #ffffff; // Color de fondo
+        border: 1px solid #cccccc; // Borde
+        border-radius: 4px; // Bordes redondeados
+        padding: 0; // Elimina el relleno
+        list-style: none; // Elimina los puntos de lista
+    }
+
+    li {
+        padding: 0.5rem; // Espacio interno
+        cursor: pointer; // Cambia el cursor al pasar por encima
+    }
+}
+
+/* Estilos para el ListBox */
+.my-listbox {
+    max-height: 200px; // Altura máxima de la lista
+    overflow-y: auto; // Agrega desplazamiento vertical si es necesario
+
+    li {
+        padding: 0.5rem; // Espacio interno
+        cursor: pointer; // Cambia el cursor al pasar por encima
+    }
+
+    li[aria-selected="true"] {
+        background-color: #f0f0f0; // Color de fondo para el elemento activo
+    }
+}

@@ -4,11 +4,16 @@
 .header {
     // transition: all 0.3s ease;
     transition: all 0.4s ease-out;
+    display: flex;
+    // background-color: orange;
+    height: 10rem;
+    // background-color: orange;
 
     // background-color: red;
     &__nav {
         width: 100%;
         height: 15rem;
+
     }
 
     &__btn {
@@ -24,4 +29,16 @@
 
     }
 
+}
+
+.nav {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: red;
+}
+
+.profile {
+    width: 20rem;
+    height: 2rem;
+    background-color: green;
 }
