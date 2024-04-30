@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 export const useFilters = () => {
   const initialState = {
-    category: "all",
-    minPrice: 300,
+    category: 'all',
+    minPrice: 0,
   };
   const [filters, setFilters] = useState(initialState);
 
