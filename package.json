@@ -12,8 +12,14 @@
   "dependencies": {
     "@adobe/react-spectrum": "^3.34.1",
     "@headlessui/react": "^1.7.19",
+    "firebase": "^10.11.1",
+    "localforage": "^1.10.0",
+    "match-sorter": "^6.3.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-loader-spinner": "^6.1.6",
+    "react-router-dom": "^6.23.0",
+    "sort-by": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

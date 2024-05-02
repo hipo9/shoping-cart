@@ -5,7 +5,7 @@ import { useFilters } from '../../hooks/useFilters';
 export const FilterProvider = ({ children }) => {
   const { filters, setFilters, prodsFiltered } = useFilters();
 
-  console.log(filters);
+  
   return (
     <FilterContext.Provider value={{ filters, setFilters, prodsFiltered }}>
       {children}

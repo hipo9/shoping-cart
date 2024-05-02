@@ -7,8 +7,7 @@ export const useFilters = () => {
   };
   const [filters, setFilters] = useState(initialState);
 
-  console.log(filters.category);
-  console.log(filters);
+  
   const prodsFiltered = (products = []) => {
     return products.filter((product) => {
       return (

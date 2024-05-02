@@ -4,9 +4,10 @@ import { AddToCartIcon, RemoveFromCartIcon } from '../../components/Iconos';
 
 // eslint-disable-next-line react/prop-types
 export const Product = ({ product }) => {
+  const { cart, addItemtoCart, removeFromCart } = useContext(CartContext);
+
   // eslint-disable-next-line react/prop-types
   const { title, image, category, price, id } = product;
-  const { cart, addItemtoCart, removeFromCart } = useContext(CartContext);
   const checkProductIncart = () => cart.some((item) => item.id === id);
 
   return (
@@ -33,7 +34,9 @@ export const Product = ({ product }) => {
           }
           className={checkProductIncart() ? 'btn-danger' : 'btn-primary'}>
           {checkProductIncart() ? <RemoveFromCartIcon /> : <AddToCartIcon />}
-          <label className='product__label-btn'>{checkProductIncart()? 'Cancel' : 'Add cart'}</label>
+          <label className='product__label-btn'>
+            {checkProductIncart() ? 'Cancel' : 'Add cart'}
+          </label>
         </button>
       </div>
     </ul>

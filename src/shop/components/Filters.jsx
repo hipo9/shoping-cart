@@ -1,5 +1,6 @@
 import { useContext, useId } from 'react';
 import { FilterContext } from '../context/filterContext/FiltersContext';
+import { Spinner } from '../../components/Spinner';
 
 export const Filters = () => {
   const { filters, setFilters } = useContext(FilterContext);
@@ -35,6 +36,7 @@ export const Filters = () => {
           onChange={handleChangeminPrice}
         />
         <span className='filters__span'>${filters.minPrice}</span>
+        <Spinner />
       </div>
 
       <select

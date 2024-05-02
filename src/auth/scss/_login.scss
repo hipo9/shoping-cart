@@ -1,0 +1,16 @@
+@use '../../scss/base/variables'as v;
+@use '../../scss/base/mixins'as m;
+
+.login {
+    // background-color: orange;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__button-start {
+
+        @include m.button(v.$primary, v.$white)
+    }
+}

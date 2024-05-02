@@ -25,6 +25,58 @@
 	}
 }
 
+@mixin form-resp($ancho-maximo: 600px, $espaciado: 20px, $bg-button: v.$primary) {
+	max-width: $ancho-maximo;
+	margin: 0 auto;
+	padding: $espaciado;
+	border: 1px solid rgba($color: v.$white, $alpha: .3);
+	border-radius: 5%;
+
+	// Estilos para campos de entrada
+	input[type="text"],
+	input[type="email"],
+	input[type="password"],
+	textarea,
+	select {
+		width: 100%;
+		padding: 10px;
+		margin-bottom: $espaciado / 2;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		box-sizing: border-box;
+		font-size: 16px;
+
+		// Estilos adicionales para enfoque
+		&:focus {
+			outline: none;
+			border-color: blue;
+		}
+	}
+
+	// Estilos para botones
+	button {
+		width: 100%;
+		padding: 10px;
+		border: none;
+		border-radius: 5px;
+		background-color: $bg-button;
+		color: white;
+		font-size: 16px;
+		cursor: pointer;
+
+		&:hover {
+			background-color: darken($bg-button, 10%);
+		}
+	}
+
+	// Estilos para etiquetas de error
+	.error-message {
+		color: red;
+		font-size: 14px;
+	}
+
+}
+
 @mixin button($bgColor, $colorTexto) {
 	align-items: center;
 	background-color: $bgColor;
