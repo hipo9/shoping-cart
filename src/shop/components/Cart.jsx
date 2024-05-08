@@ -2,9 +2,10 @@ import { useCartContext } from '../context/CartContext/CartContext';
 import { RemoveFromCartIcon } from '../../components/Iconos';
 import { roundNumber } from '../utilities/roundNumber';
 import { useThemeContext } from '../context/themeContext';
+import { memo } from 'react';
 
-// eslint-disable-next-line react/prop-types
-export const Cart = ({ toggle }) => {
+// eslint-disable-next-line react/prop-types, react/display-name
+export const Cart = memo(({ toggle }) => {
   const {
     cart = [],
     removeFromCart,
@@ -18,7 +19,6 @@ export const Cart = ({ toggle }) => {
     0
   );
 
-  console.log(toggle);
   return (
     <>
       {toggle && (
@@ -96,4 +96,4 @@ export const Cart = ({ toggle }) => {
       )}
     </>
   );
-};
+});

@@ -3,17 +3,24 @@ import { ShopLayout } from '../layout/ShopLayout';
 import data from '../../mock/data.json';
 import { useFilterContext } from '../context/filterContext/FiltersContext';
 import { Filters } from '../components/Filters';
+import { useEffect, useState } from 'react';
 
 export const HomePage = () => {
-  const { prodsFiltered } = useFilterContext();
+  const { prodsFiltered, filters } = useFilterContext();
+  const [productsState, setProductsState] = useState([]);
 
-  const products = prodsFiltered(data);
+  useEffect(() => {
+    const idTime = setTimeout(() => {
+      setProductsState(prodsFiltered(data));
+    }, 250);
+    return () => clearTimeout(idTime);
+  }, [filters]);
 
   return (
     <ShopLayout className='layout'>
       <Header />
       <Filters />
-      <Products products={products} />
+      <Products products={productsState} />
     </ShopLayout>
   );
 };
