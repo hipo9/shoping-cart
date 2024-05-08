@@ -10,8 +10,3 @@
     height: 100vh;
 }
 
-.form {
-    @include m.flex-column-center;
-    gap: 1rem;
-    @include m.form-resp;
-}

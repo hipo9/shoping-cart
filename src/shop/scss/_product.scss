@@ -2,59 +2,64 @@
 @use '../../scss/base/mixins'as m;
 
 .product {
-    display: flex;
-    gap: 2rem;
-    box-shadow: 0 0 1px v.$black;
-    // background-color: green;
-
+    @include m.grid(3, 1rem);
+    gap: 1rem;
+    padding: 1rem;
+    height: 24rem;
+    font-size: 1.6rem;
 
     &__img {
-        filter: drop-shadow(0 0 25px v.$dark);
-        // background-color: #<color-del-fondo-que-deseas>;
-        /* Reemplaza con el color del fondo que deseas */
-        min-width: 15rem;
-        max-width: 15rem;
+        min-width: 10rem;
         height: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        grid-column: 1/2;
     }
 
-    &__description {
-        display: flex;
-        flex-direction: column;
-        font-size: 1.6rem;
-        justify-content: space-between;
+    &__container-detail {
+        height: auto;
 
-    }
-
-    &__container-txt {
-        display: flex;
-        flex-direction: column;
         
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        grid-column: 2/4;
     }
 
-    &__title,
-    &__txt {
-        // white-space: nowrap;
-        // overflow: hidden;
-        // text-overflow: ellipsis;
-        width: 180px;
-        white-space: nowrap;
-        /* Evita que el texto se ajuste automáticamente */
-        overflow: hidden;
-        /* Oculta el texto que excede el contenedor */
-        text-overflow: ellipsis;
-        /* Trunca el texto sin puntos suspensivos */
+
+    &__txt,
+    &__title {
+        display: block;
+
+
     }
 
     &__title {
         font-size: 1.6rem;
+        font-weight: 700;
+        display: block;
     }
 
     &__txt {
         margin-top: .8rem;
+
+    }
+
+    &__span {
+        font-weight: normal;
+        font-weight: 700;
+    }
+
+    &__add-btn {
+        margin: 0 auto;
+        width: 100%;
     }
 
     &__label-btn {
-         margin-left: .5rem;
+        margin-left: .5rem;
+
+
     }
 
 }

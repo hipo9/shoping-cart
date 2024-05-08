@@ -15,16 +15,13 @@ body {
     font-family: v.$fuentePrincipal;
     font-size: 2rem;
     line-height: 1.5;
-    color: v.$white;
+    // color: v.$white;
+
     background-color: #ffffff;
-
-
 
 }
 
 /* Cambios para el modo oscuro */
-
-
 .container {
     width: 95%;
     max-width: 1200px;
@@ -46,6 +43,8 @@ li {
 /************************
  * ESTILO PARA LA TABLA *
  ************************/
+
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -70,14 +69,8 @@ td {
     font-size: 1.6rem;
 }
 
-
-
 /* Estilo para filas alternas (opcional)(crear el efecto de rallitas por cada escalosn(tr)) */
 tr:nth-child(even) {
     // border-top: 1px solid v.$secondary;
     /* Color de fondo para filas pares */
-}
-
-.danger {
-    background-color: v.$danger;
 }

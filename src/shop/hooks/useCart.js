@@ -1,9 +1,17 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { cartReducer } from '../context/CartContext/cartReducer';
 import { CART_ACTION_TYPES } from '../context/CartContext/actionTypes';
+import {
+  getLocalStorage,
+  saveLocalStorage,
+} from '../../utilities/localStorage';
+
+const init = () => {
+  return getLocalStorage('cart');
+};
 
 export const useCart = () => {
-  const [cart, dispatch] = useReducer(cartReducer, []);
+  const [cart, dispatch] = useReducer(cartReducer, [], init);
 
   const MAX_ITEMS = 9;
   const MIN_ITEMS = 1;
@@ -33,6 +41,10 @@ export const useCart = () => {
   const clearCart = () => {
     dispatch({ type: CART_ACTION_TYPES.CLEAR_CART });
   };
+
+  useEffect(() => {
+    saveLocalStorage(cart, 'cart');
+  }, [cart]);
 
   return {
     cart,

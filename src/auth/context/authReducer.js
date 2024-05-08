@@ -1,12 +1,11 @@
 export const AUTH_ACTION_TYPES = {
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',
-  CHECKING_CREDENTIALS: 'CHECKING_CREDENTIALS',
+  CHECKING: 'CHECKING',
 };
 
 export const authReducer = (state, action) => {
   const { type, payload } = action;
-  console.log(payload);
 
   switch (type) {
     case AUTH_ACTION_TYPES.LOGIN:
@@ -15,9 +14,9 @@ export const authReducer = (state, action) => {
         status: 'authenticated',
         uid: payload.uid,
         email: payload.email,
-        displayname: payload.displayname,
-        photoURL: payload.photoURL,
-        errorMessage: null,
+        displayName: payload.displayName,
+        image: payload.photoURL,
+        loading: false,
       };
     case AUTH_ACTION_TYPES.LOGOUT:
       return {
@@ -26,12 +25,14 @@ export const authReducer = (state, action) => {
         uid: null,
         email: null,
         displayname: null,
-        photoURL: null,
-        errorMessage: payload.errorMessage,
+        image: null,
+        loading: true,
+        // errorMessage: payload.errorMessage,
       };
-    case AUTH_ACTION_TYPES.CHECKING_CREDENTIALS:
+    case AUTH_ACTION_TYPES.CHECKING:
       return {
         status: 'checking',
+        loading: true,
       };
     default:
       return state;

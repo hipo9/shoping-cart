@@ -1,5 +1,6 @@
-import { CartContext } from './CartContext';
 import { useCart } from '../../hooks/useCart';
+import { CartContext } from './CartContext';
+
 
 // eslint-disable-next-line react/prop-types
 export const CartProvider = ({ children }) => {
@@ -11,6 +12,7 @@ export const CartProvider = ({ children }) => {
     increaseQuantity,
     clearCart,
   } = useCart();
+  
   return (
     <CartContext.Provider
       value={{

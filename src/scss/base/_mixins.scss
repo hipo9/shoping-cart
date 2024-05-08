@@ -25,40 +25,49 @@
 	}
 }
 
-@mixin form-resp($ancho-maximo: 600px, $espaciado: 20px, $bg-button: v.$primary) {
-	max-width: $ancho-maximo;
+@mixin form-light($max-width: 50rem, $space: 2rem,
+	$bg-button: orange, $bg-form: white, $border-r:5%,
+	$border-ri:5px, $border-rb:5px) {
+	max-width: $max-width;
 	margin: 0 auto;
-	padding: $espaciado;
-	border: 1px solid rgba($color: v.$white, $alpha: .3);
-	border-radius: 5%;
+	padding: $space;
+	background-color: $bg-form;
+	backdrop-filter: blur(10px);
+	border-radius: $border-ri;
+	box-shadow: 0px 5px 15px rgba($color: v.$black, $alpha: 0.25);
+	transition: all 0.3 ease;
 
-	// Estilos para campos de entrada
-	input[type="text"],
-	input[type="email"],
-	input[type="password"],
+
+	label {
+		font-size: 1.6rem;
+		opacity: .8;
+	}
+
 	textarea,
-	select {
+	input {
 		width: 100%;
-		padding: 10px;
-		margin-bottom: $espaciado / 2;
-		border: 1px solid #ccc;
-		border-radius: 5px;
-		box-sizing: border-box;
+		padding: 1rem;
+		margin-bottom: 1rem;
+		// border: 1px solid #ccc;
+		border: 1px solid transparent;
+		border-radius: $border-ri;
 		font-size: 16px;
+		background-color: transparent;
+		box-shadow: 0px 0px 4px v.$body-secondary;
 
-		// Estilos adicionales para enfoque
 		&:focus {
 			outline: none;
-			border-color: blue;
+			border-color: v.$primary;
+
 		}
 	}
 
-	// Estilos para botones
 	button {
 		width: 100%;
+		margin-bottom: 1rem;
 		padding: 10px;
 		border: none;
-		border-radius: 5px;
+		border-radius: $border-rb;
 		background-color: $bg-button;
 		color: white;
 		font-size: 16px;
@@ -69,12 +78,56 @@
 		}
 	}
 
+	div {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 1.6rem;
+		margin-top: 1rem;
+
+		a {
+			color: #5668D6;
+			text-decoration: underline;
+			font-weight: 700;
+		}
+
+		p {
+			margin: 0;
+		}
+	}
+
 	// Estilos para etiquetas de error
 	.error-message {
 		color: red;
 		font-size: 14px;
 	}
 
+}
+
+@mixin form-dark($max-width: 50rem, $space: 2rem,
+	$bg-button: orange, $bg-form: white, $border-r:5%,
+	$border-ri:5px, $border-rb:5px) {
+
+	@include form-light;
+
+	max-width: $max-width;
+	padding: $space;
+	background-color: $bg-form;
+	border-radius: $border-r;
+
+
+	textarea,
+	input {
+		box-shadow: 0px 0px 4px white;
+		border-radius: $border-ri;
+		color: white;
+
+	}
+
+	button {
+		background-color: $bg-button;
+		border-radius: $border-rb;
+	}
 }
 
 @mixin button($bgColor, $colorTexto) {
@@ -89,11 +142,13 @@
 	font-weight: 700;
 	justify-content: center;
 	margin: 0;
+
 	padding: 1rem 2rem;
 	text-align: center;
 	border: none;
 	cursor: pointer;
 	transition: background-color 0.3s, color 0.3s;
+	width: auto;
 
 	@include tablet {
 		width: auto;
@@ -104,7 +159,30 @@
 	}
 }
 
-@mixin floating-btn($bg-color, $shadow-color: rgba(0, 0, 0, 0.3)) {
+@mixin button-r($width, $height, $bg-color, $txt-color) {
+	@include button($bg-color, $txt-color);
+	width: $width;
+	height: $height;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+
+}
+
+@mixin button-trans($border-color, $txt-color, $bg-hover) {
+	@include button(transparent, $txt-color);
+	border: 1px solid;
+	border-color: $border-color;
+
+	&:hover {
+		background-color: rgba($color: $bg-hover, $alpha: 0.3);
+	}
+
+}
+
+@mixin c($bg-color, $shadow-color: rgba(0, 0, 0, 0.3)) {
 	background-color: $bg-color;
 	color: #fff;
 	border: none;
@@ -171,6 +249,103 @@
 	}
 }
 
+@mixin switch-rounded($slider-width: 24px,
+	$slider-height: 14px,
+	$slider-background-color: #ccc, $slider-handle-color: #fff, $slider-transition: 0.3s) {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+
+	input {
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
+
+	/* The slider */
+	span {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		//? el bg es cuando esta a apagado
+		background-color: v.$secondary;
+		transition: .4s;
+		transition: .4s;
+		border-radius: 3.4rem;
+
+		&:before {
+			position: absolute;
+			content: "";
+			height: 26px;
+			width: 26px;
+			left: 4px;
+			bottom: 4px;
+			background-color: v.$white;
+			transition: .4s;
+		}
+	}
+
+	input:checked+span {
+		background-color: v.$primary;
+	}
+
+	input:focus+span {
+		box-shadow: 0 0 1px #2196F3;
+	}
+
+	input:checked+span:before {
+		transform: translateX(26px);
+	}
+
+	span:before {
+		border-radius: 50%;
+	}
+}
+
+@mixin range-input($track-color: #ccc, $thumb-color: #007bff, $thumb-size: 16px, $thumb-border-radius: 50%) {
+
+	input {
+		appearance: none;
+		width: 100%;
+		height: 15px;
+		border-radius: 5px;
+		background: #d3d3d3;
+		outline: none;
+		opacity: 0.7;
+		transition: .2s;
+		transition: opacity .2s;
+
+	}
+
+
+	input:hover {
+		opacity: 1;
+	}
+
+	/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+	input::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 25px;
+		height: 25px;
+		border-radius: 50%;
+		background: v.$primary;
+		cursor: pointer;
+	}
+
+	input::-moz-range-thumb {
+		width: 25px;
+		height: 25px;
+		border-radius: 50%;
+		background: #04AA6D;
+		cursor: pointer;
+	}
+}
+
 /* Importa el mixin */
 @mixin custom-scrollbar($track-color: #ccc, $thumb-color: #999, $thumb-hover-color: #666) {
 
@@ -192,6 +367,34 @@
 	}
 }
 
+@mixin border-black {
+	border: 1px solid rgba($color: v.$black, $alpha: 0.22);
+}
+
+@mixin border-white {
+	border: 1px solid rgba($color: v.$white, $alpha: 0.22);
+
+}
+
+@mixin box-shadow-blue {
+	box-shadow:
+		0px 2px 2px hsl(220deg 60% 50% / 0.2),
+		2px 4px 4px hsl(220deg 60% 50% / 0.2),
+		4px 8px 8px hsl(220deg 60% 50% / 0.2),
+		8px 16px 16px hsl(220deg 60% 50% / 0.2),
+		16px 32px 32px hsl(220deg 60% 50% / 0.2);
+
+}
+
+@mixin box-shadow-blue-2 {
+	box-shadow:
+		0px 0px 2px hsl(220deg 60% 50% / 0.2),
+		0px 0px 4px hsl(220deg 60% 50% / 0.2),
+		0px 0px 8px hsl(220deg 60% 50% / 0.2),
+		8px 16px 16px hsl(220deg 60% 50% / 0.2),
+		16px 32px 32px hsl(220deg 60% 50% / 0.2);
+
+}
 
 @mixin grid($columnas, $espaciado) {
 	display: grid;

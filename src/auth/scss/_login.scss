@@ -8,9 +8,20 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 
-    &__button-start {
+    &__switch {
+        position: absolute;
+        left: 2rem;
+        top: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin: 0;
+        padding: 0;
 
-        @include m.button(v.$primary, v.$white)
+
     }
+
 }

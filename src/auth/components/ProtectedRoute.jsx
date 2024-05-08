@@ -1,19 +1,33 @@
-import { Navigate, useNavigate } from 'react-router-dom';
+import { ShopLayout } from '../../shop/layout/ShopLayout';
+import { Spinner } from '../../ui/components/Spinner';
 import { useAuthContext } from '../context/AuthContext';
 import { LoginPage } from '../pages';
 
+
 // eslint-disable-next-line react/prop-types
 export const ProtectedRoute = ({ children }) => {
-  console.log('render protected');
-  const { user, loading } = useAuthContext();
+  const { user } = useAuthContext();
+  const { status } = user;
 
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
-
-  if (!user) {
+  if (status == 'checking')
+    return (
+      <ShopLayout>
+        <div
+          style={{
+            height: '100vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Spinner />
+        </div>
+      </ShopLayout>
+    );
+  if (status === 'not-authenticated' || status === 'checking') {
     return <LoginPage />;
+
     // return <Navigate to={'/login'} />;
   }
-  return <div style={{ backgroundColor: 'red' }}>{children}</div>;
+
+  return <>{children}</>;
 };

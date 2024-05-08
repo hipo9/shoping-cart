@@ -1,0 +1,40 @@
+@use '../base/mixins'as m;
+@use '../base/variables'as v;
+
+.switch {
+    @include m.switch-rounded();
+    
+}
+
+.range-input {
+    @include m.range-input;
+    // width: 98%;
+    margin: 0;
+    padding: 0;
+    
+    
+}
+
+.btn-danger {
+    @include m.button(v.$danger, v.$white);
+}
+
+.btn-primary {
+    @include m.button(v.$primary, v.$white);
+}
+
+.btn-disable {
+
+    pointer-events: none;
+    /* Desactiva la interacción del cursor con el botón */
+    opacity: 0.8;
+}
+
+.form-light {
+    @include m.form-light(35rem, 3rem, v.$primary, v.$white, 0, 0, 0);
+}
+
+.form-dark {
+    @include m.form-dark(35rem, 3rem, v.$primary, v.$body-tertiary, 0, 0, 0);
+
+}

@@ -2,11 +2,21 @@
 @use './variables'as v;
 
 
-.btn-danger {
-    @include m.button(v.$danger, v.$white);
+.danger {
+    background-color: v.$danger;
 }
 
-.btn-primary {
-    @include m.button(v.$primary, v.$white);
+.border-light {
+    @include m.border-white;
+}
+
+.border-dark {
+    @include m.border-black;
+}
+
+.container {
+    width: 90%;
+    max-width: 120rem;
+    margin: 0 auto;
     
 }

@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react';
-import { CartContext } from '../context/CartContext/CartContext';
+import { useCartContext } from '../context/CartContext/CartContext';
 import { RemoveFromCartIcon } from '../../components/Iconos';
 import { roundNumber } from '../utilities/roundNumber';
+import { useThemeContext } from '../context/themeContext';
 
 // eslint-disable-next-line react/prop-types
 export const Cart = ({ toggle }) => {
@@ -11,16 +11,19 @@ export const Cart = ({ toggle }) => {
     increaseQuantity,
     decreaseQuantity,
     clearCart,
-  } = useContext(CartContext);
-
+  } = useCartContext();
+  const { isDark } = useThemeContext();
   const totaToPay = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
+
+  console.log(toggle);
   return (
     <>
       {toggle && (
-        <section className='cart'>
+        <section
+          className={`cart ${isDark ? 'layout__dark' : 'layout__light'}`}>
           {/* <header className='cart__header'></header> */}
           <header className='cart__header'></header>
           {!cart.length ? (

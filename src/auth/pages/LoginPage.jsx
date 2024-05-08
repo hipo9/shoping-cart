@@ -1,16 +1,21 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { useAuthContext } from '../context/AuthContext';
 import { AuthLayout } from '../layout/AuthLayout';
-import { useState } from 'react';
+
+import { useThemeContext } from '../../shop/context/themeContext';
+import { CiDark } from 'react-icons/ci';
+import { GoSun } from 'react-icons/go';
+import { Switch } from '../../ui/components/Switch';
 
 export const LoginPage = () => {
-  const { login, loginWithGoogle } = useAuthContext();
+  const { login, loginWithGoogle, user } = useAuthContext();
+  const { status } = user;
   const { email, password, handleChangeInput } = useForm({
-    email: '',
-    password: '',
+    email: 'sanchezrkm@google.com',
+    password: '123456',
   });
-
+  const { isDark, toggleTheme } = useThemeContext();
   const navigate = useNavigate();
   //=====================================
   const handleSubmitlogin = async (e) => {
@@ -24,16 +29,16 @@ export const LoginPage = () => {
   };
   const handleGoogleSignIn = async () => {
     await loginWithGoogle();
-    navigate('/');
+    navigate('/products');
   };
 
   return (
     <AuthLayout>
-      <h3>{email}</h3>
-      <h3>{password}</h3>
       <div className='login'>
-        <h1>Welcome to Login</h1>
-        <form onSubmit={handleSubmitlogin} className='form'>
+        <form
+          onSubmit={handleSubmitlogin}
+          className={isDark ? 'form-dark' : 'form-light'}>
+          <label htmlFor=''>Login</label>
           <input
             type='email'
             name='email'
@@ -42,6 +47,8 @@ export const LoginPage = () => {
             onChange={handleChangeInput}
             value={email}
           />
+          <label htmlFor=''>Password</label>
+
           <input
             type='password'
             autoComplete='address-level1'
@@ -52,9 +59,24 @@ export const LoginPage = () => {
             value={password}
           />
           {/* <button type='submit'>Sign In</button> */}
-          <button type='submit'>Sign In</button>
+          <button
+            type='submit'
+            disabled={status === 'checking' && true}
+            className='form__button'>
+            Sign In
+          </button>
+          <button onClick={handleGoogleSignIn} className='login__button'>
+            Google
+          </button>
+          <div className='form__account'>
+            <p>Don't you have a account?</p>
+            <Link>Create</Link>
+          </div>
         </form>
-        <button onClick={handleGoogleSignIn}> Google</button>
+        <div className='login__switch'>
+          <Switch state={isDark} toggleTheme={toggleTheme} />
+          <span className='login__icon'>{isDark ? <CiDark /> : <GoSun />}</span>
+        </div>
       </div>
     </AuthLayout>
   );

@@ -1,3 +1,12 @@
+import { useThemeContext } from '../../shop/context/themeContext';
+
+// eslint-disable-next-line react/prop-types
 export const AuthLayout = ({ children }) => {
-  return <div className='layout'>{children}</div>;
+  const { isDark } = useThemeContext();
+  console.log(isDark);
+  return (
+    <div className={`${isDark ? 'layout__dark' : 'layout__light'}`}>
+      {children}
+    </div>
+  );
 };
