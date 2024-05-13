@@ -1,11 +1,9 @@
-// import { Home } from './shop/pages/Home';
-import { CartProvider } from './shop/context/CartContext/CartProvider';
-import { FilterProvider } from './shop/context/filterContext/';
+import { AuthProvider } from './auth/context/authContext';
 import { AppRouter } from './router/AppRouter';
-import { AuthProvider } from './auth/context/AuthProvider';
-import { ThemeProvider } from './shop/context/themeContext/ThemeProvider';
+import { CartProvider } from './shop/context/CartContext/CartProvider';
+import { FilterProvider } from './shop/context/filterContext/FilterProvider';
+import { ThemeProvider } from './shop/context/themeContext';
 
-// import { Header } from './shop/components/Header';
 
 export const MyStoreApp = () => {
   // const [item, setItem] = useState(data);

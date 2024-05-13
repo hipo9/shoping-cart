@@ -17,10 +17,11 @@ export const HomePage = () => {
   }, [filters]);
 
   return (
-    <ShopLayout className='layout'>
+    <ShopLayout>
       <Header />
       <Filters />
-      <Products products={productsState} />
+
+      {/* <Products products={productsState} />  */}
     </ShopLayout>
   );
 };

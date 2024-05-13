@@ -3,7 +3,7 @@
 
 .switch {
     @include m.switch-rounded();
-    
+
 }
 
 .range-input {
@@ -11,8 +11,8 @@
     // width: 98%;
     margin: 0;
     padding: 0;
-    
-    
+
+
 }
 
 .btn-danger {
@@ -31,10 +31,10 @@
 }
 
 .form-light {
-    @include m.form-light(35rem, 3rem, v.$primary, v.$white, 0, 0, 0);
+    @include m.form-light(40rem, 3rem, v.$primary, v.$white, 0, 0, 0);
 }
 
 .form-dark {
-    @include m.form-dark(35rem, 3rem, v.$primary, v.$body-tertiary, 0, 0, 0);
+    @include m.form-dark(40rem, 3rem, v.$primary, v.$body-tertiary, 0, 0, 0);
 
 }

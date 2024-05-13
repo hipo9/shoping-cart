@@ -26,7 +26,7 @@
 }
 
 @mixin form-light($max-width: 50rem, $space: 2rem,
-	$bg-button: orange, $bg-form: white, $border-r:5%,
+	$bg-button: v.$primary, $bg-form: white, $border-r:5%,
 	$border-ri:5px, $border-rb:5px) {
 	max-width: $max-width;
 	margin: 0 auto;
@@ -41,6 +41,7 @@
 	label {
 		font-size: 1.6rem;
 		opacity: .8;
+		margin-bottom:1rem;
 	}
 
 	textarea,
@@ -142,7 +143,6 @@
 	font-weight: 700;
 	justify-content: center;
 	margin: 0;
-
 	padding: 1rem 2rem;
 	text-align: center;
 	border: none;
@@ -443,4 +443,12 @@
 		background-repeat: no-repeat;
 		background-position: center center;
 	}
+}
+
+
+@mixin title {
+	font-size: 2.6rem;
+	font-weight: 400;
+	text-align: center;
+
 }

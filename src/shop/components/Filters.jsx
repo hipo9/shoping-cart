@@ -12,7 +12,7 @@ export const Filters = () => {
     <section className='filters container'>
       <div className='filters__container-range '>
         <label className='filters__label' htmlFor={minPriceFilterId}>
-          Precio Minimo
+          Min. Price
         </label>
         <Range onChange={(value) => setMinPrice(value)} min={0} max={1000} />
         <span className='filters__price-min'>${filters.minPrice}</span>

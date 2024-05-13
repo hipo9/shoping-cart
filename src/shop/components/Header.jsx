@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Cart } from './Cart';
 import { CartIcon } from '../../components/Iconos';
 import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../../auth/context/AuthContext';
+import { useAuthContext } from '../../auth/context/authContext';
 import { CiDark } from 'react-icons/ci';
 
 import { GoSun } from 'react-icons/go';
@@ -10,15 +10,16 @@ import { useThemeContext } from '../context/themeContext';
 import { Switch } from '../../ui/components/Switch';
 
 export const Header = () => {
-  const { logout, user } = useAuthContext();
+  const [toggle, setToggle] = useState(false);
+  const { startLogout, user } = useAuthContext();
   const { isDark, toggleTheme } = useThemeContext();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await logout();
+    await startLogout();
     navigate('/login');
   };
-  const [toggle, setToggle] = useState(false);
+
   const handleToggleShowCart = () => {
     setToggle((prevState) => !prevState);
   };
@@ -47,7 +48,9 @@ export const Header = () => {
         <CartIcon />
       </button>
 
-      <Cart toggle={toggle} />
+      {toggle && <Cart />}
+
+      {/* { <Cart toggle={toggle} />}  */}
     </header>
   );
 };

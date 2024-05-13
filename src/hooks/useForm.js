@@ -5,12 +5,14 @@ export const useForm = (initialForm = {}) => {
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
+    
     setFormState((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
   const clearInput = () => setFormState(initialForm);
+  
   return {
     formState,
     ...formState,
