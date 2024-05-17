@@ -1,11 +1,11 @@
-import { useContext, useId } from 'react';
-import { FilterContext } from '../context/filterContext/FiltersContext';
+import { useId } from 'react';
+import { useFilterContext } from '../context/filterContext/FiltersContext';
 import { Range } from '../../ui/components/Range';
-import 'react-widgets/scss/styles.scss';
 import DropdownList from 'react-widgets/DropdownList';
+import 'react-widgets/scss/styles.scss';
 
 export const Filters = () => {
-  const { filters, setMinPrice, setCategory } = useContext(FilterContext);
+  const { filters, setMinPrice, setCategory } = useFilterContext();
   const { minPriceFilterId } = useId();
 
   return (

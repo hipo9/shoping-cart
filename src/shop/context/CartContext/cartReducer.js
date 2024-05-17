@@ -30,6 +30,6 @@ export const cartReducer = (state = [], action) => {
 
     case CART_ACTION_TYPES.CLEAR_CART:
       console.log('entrando');
-      return [];
+      return (state = []);
   }
 };

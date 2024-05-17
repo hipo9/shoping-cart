@@ -7,7 +7,6 @@ import { useThemeContext } from '../context/themeContext/ThemeContext';
 export const Product = ({ product }) => {
   const { isDark } = useThemeContext();
   const { cart, addItemtoCart, removeFromCart } = useContext(CartContext);
-
   // eslint-disable-next-line react/prop-types
   const { title, image, category, price, id } = product;
   const checkProductIncart = () => cart.some((item) => item.id === id);

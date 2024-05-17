@@ -20,7 +20,7 @@ export const useFilters = () => {
     }));
   };
 
-  const prodsFiltered = (products = []) => {
+  const filterProducts = (products = []) => {
     return products.filter((product) => {
       return (
         product.price >= filters.minPrice &&
@@ -29,5 +29,5 @@ export const useFilters = () => {
     });
   };
 
-  return { filters, prodsFiltered, setFilters, setMinPrice, setCategory };
+  return { filters, filterProducts, setFilters, setMinPrice, setCategory };
 };

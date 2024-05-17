@@ -2,12 +2,11 @@ export const AUTH_ACTION_TYPES = {
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',
   CHECKING: 'CHECKING',
-  SUCCESFUL_REGISTER: 'SUCCESFUL_REGISTER',
 };
 
 export const authReducer = (state, action) => {
   const { type, payload } = action;
-  console.log(type);
+  
 
   switch (type) {
     case AUTH_ACTION_TYPES.LOGIN:
@@ -24,7 +23,7 @@ export const authReducer = (state, action) => {
         status: 'not-authenticated',
         uid: null,
         email: null,
-        displayname: null,
+        displayName: null,
         image: null,
         errorMessage: payload,
       };
@@ -32,13 +31,6 @@ export const authReducer = (state, action) => {
       return {
         ...state,
         status: 'checking',
-        loading: true,
-      };
-    case AUTH_ACTION_TYPES.SUCCESFUL_REGISTER:
-      return {
-        status: 'not-authenticated',
-        ok: payload.ok,
-        errorMessage: payload.errorMessage,
       };
     default:
       return state;

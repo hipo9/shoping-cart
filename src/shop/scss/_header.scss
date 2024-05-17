@@ -14,8 +14,9 @@
     color: white;
     padding-top: 1rem;
     gap: 1rem;
+    
 
-
+position: relative;
 
     @include m.tablet {
         height: 10rem;

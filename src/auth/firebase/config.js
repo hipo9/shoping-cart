@@ -14,6 +14,4 @@ const firebaseConfig = {
 
 // Inicializar Firebase
 export const app = initializeApp(firebaseConfig);
-// Obtener el objeto de autenticación
-// eslint-disable-next-line no-unused-vars
 export const authFirebase = getAuth(app);

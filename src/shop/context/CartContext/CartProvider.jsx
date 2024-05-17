@@ -11,6 +11,7 @@ export const CartProvider = ({ children }) => {
     decreaseQuantity,
     increaseQuantity,
     clearCart,
+    total
   } = useCart();
   
   return (
@@ -22,6 +23,7 @@ export const CartProvider = ({ children }) => {
         decreaseQuantity,
         increaseQuantity,
         clearCart,
+        total
       }}>
       {children}
     </CartContext.Provider>

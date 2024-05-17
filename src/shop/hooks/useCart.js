@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useMemo, useReducer, useState } from 'react';
 import { cartReducer } from '../context/CartContext/cartReducer';
 import { CART_ACTION_TYPES } from '../context/CartContext/actionTypes';
 import {
@@ -12,6 +12,19 @@ const init = () => {
 
 export const useCart = () => {
   const [cart, dispatch] = useReducer(cartReducer, [], init);
+
+  const calcTotal = () => {
+    if (!cart) return 0;
+
+    let res = cart.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+
+    return res;
+  };
+
+  const total = useMemo(() => calcTotal(), [cart]);
 
   const MAX_ITEMS = 9;
   const MIN_ITEMS = 1;
@@ -45,7 +58,7 @@ export const useCart = () => {
   useEffect(() => {
     saveLocalStorage(cart, 'cart');
   }, [cart]);
-
+  console.log(total);
   return {
     cart,
     addItemtoCart,
@@ -53,5 +66,6 @@ export const useCart = () => {
     decreaseQuantity,
     increaseQuantity,
     clearCart,
+    total,
   };
 };

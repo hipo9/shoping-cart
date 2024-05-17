@@ -4,6 +4,7 @@ export const saveLocalStorage = (data, name = '') => {
 
   localStorage.setItem(name, JSON.stringify(data));
 };
+
 export const getLocalStorage = (name = '') => {
   if (!name) throw new Error('Favor de ingresar un nombre valido');
   if (name.length < 2) throw new Error('Nombre invalido');

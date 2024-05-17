@@ -9,6 +9,15 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    padding: 1rem;
+    
+    
+
+    @include m.tablet {
+        padding: 0rem
+    }
+
+    
 
 
     &__switch {

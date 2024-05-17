@@ -49,9 +49,10 @@ export const loginWithEmailPass = async (emailUser, passwordUser) => {
       displayName,
     };
   } catch (error) {
+    console.log(error.code);
     return {
       ok: false,
-      errorMessage: error.message,
+      errorMessage: providersValidation(error.code),
     };
   }
 };
@@ -59,9 +60,8 @@ export const loginWithEmailPass = async (emailUser, passwordUser) => {
 //=================================
 export const loginWithGoogle = async () => {
   try {
+    // const resuts = await signInWithRedirect(authFirebase, googleProvide);
     const resuts = await signInWithPopup(authFirebase, googleProvide);
-    const credentials = GoogleAuthProvider.credentialFromResult(resuts);
-    console.log(credentials);
 
     const { displayName, email, photoURL, uid } = resuts.user;
     return {
@@ -72,9 +72,6 @@ export const loginWithGoogle = async () => {
       uid,
     };
   } catch (error) {
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    console.log(credential);
-    console.log(error.message);
     return {
       ok: false,
       errorMessage: error.message,

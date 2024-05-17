@@ -1,4 +1,5 @@
 import { useEffect, useReducer } from 'react';
+
 import {
   loginWithEmailPass,
   loginWithGoogle,
@@ -6,62 +7,91 @@ import {
   registerUserWithEmailPass,
 } from '../../auth/firebase/providers';
 import { AUTH_ACTION_TYPES, authReducer } from '../context/authContext';
-import { authFirebase } from '../firebase/config';
 import { onAuthStateChanged } from 'firebase/auth';
+import { authFirebase } from '../firebase/config';
+import {
+  getLocalStorage,
+  saveLocalStorage,
+} from '../../utilities/localStorage';
 
 const initialState = {
-  status: 'not-authenticated',
+  status: 'checking', //not-authenticated, authenticate
+  uid: null,
+  email: null,
+  displayName: null,
+  photoURL: null,
+  errorMessage: null,
 };
 
 export const useAuth = () => {
   const [user, dispatch] = useReducer(authReducer, initialState);
+
   //===================================================
   const startCreateUserEmailPass = async (email = '', password = '') => {
     dispatch({ type: AUTH_ACTION_TYPES.CHECKING });
     const resp = await registerUserWithEmailPass(email, password);
+    console.log(resp.errorMessage, resp.ok, resp);
     const { ok, errorMessage } = resp;
     if (!ok) {
       dispatch({ type: AUTH_ACTION_TYPES.LOGOUT, payload: errorMessage });
       setTimeout(() => {
         dispatch({ type: AUTH_ACTION_TYPES.LOGOUT });
-      }, 2000);
-      return;
+        return false;
+      }, 1500);
+      return false;
     }
-    dispatch({ type: AUTH_ACTION_TYPES.LOGOUT });
+    saveLocalStorage(true, 'isNewUser');
+    return true;
   };
   //===================================================
   const startLoginWithEmailPass = async (email, password) => {
     dispatch({ type: AUTH_ACTION_TYPES.CHECKING });
     const resp = await loginWithEmailPass(email, password);
-
-    if (!resp.ok) {
-      return dispatch({ type: AUTH_ACTION_TYPES.LOGOUT, payload: resp.errorMessage });
+    const { ok, errorMessage } = resp;
+    if (!ok) {
+      dispatch({ type: AUTH_ACTION_TYPES.LOGOUT, payload: errorMessage });
+      setTimeout(() => {
+        dispatch({ type: AUTH_ACTION_TYPES.LOGOUT });
+      }, 1500);
+      return;
     }
     dispatch({ type: AUTH_ACTION_TYPES.LOGIN, payload: resp });
+    saveLocalStorage(false, 'isNewUser');
   };
 
   //===================================================
   const startLoginWithGoogle = async () => {
     dispatch({ type: AUTH_ACTION_TYPES.CHECKING });
+    const results = await loginWithGoogle();
 
-    const resp = await loginWithGoogle();
-    if (!resp.ok) return dispatch({ type: AUTH_ACTION_TYPES.LOGOUT });
-
-    dispatch({ type: AUTH_ACTION_TYPES.LOGIN, payload: resp });
+    if (!results.ok) {
+      console.log(results);
+      return dispatch({
+        type: AUTH_ACTION_TYPES.LOGOUT,
+        payload: results.errorMessage,
+      });
+    }
+    dispatch({ type: AUTH_ACTION_TYPES.LOGIN, payload: results });
+    saveLocalStorage(false, 'isNewUser');
   };
 
   const startLogout = async () => {
+    dispatch({ type: AUTH_ACTION_TYPES.CHECKING });
     await logoutFirebase();
     dispatch({ type: AUTH_ACTION_TYPES.LOGOUT });
   };
-  console.log(user);
 
   useEffect(() => {
-    onAuthStateChanged(authFirebase, async (user) => {
-      console.log(user);
-      if (!user) return dispatch({ type: AUTH_ACTION_TYPES.LOGOUT });
-      dispatch({ type: AUTH_ACTION_TYPES.LOGIN, payload: user });
+    const unsuscribe = onAuthStateChanged(authFirebase, async (userCurrent) => {
+      if (!userCurrent || getLocalStorage('isNewUser')) {
+        return dispatch({ type: AUTH_ACTION_TYPES.LOGOUT });
+      }
+      if (!getLocalStorage('isNewUser')) {
+        dispatch({ type: AUTH_ACTION_TYPES.LOGIN, payload: userCurrent });
+      }
     });
+
+    return () => unsuscribe();
   }, []);
 
   return {

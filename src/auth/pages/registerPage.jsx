@@ -1,45 +1,37 @@
-import { useId, useRef, useState } from 'react';
+import { useId } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks/useForm';
 import { useThemeContext } from '../../shop/context/themeContext';
-import { inputValidation } from '../../utilities/inputValidation';
-
 import { useAuthContext } from '../context/authContext/AuthContext';
-import { useEffect } from 'react';
-import { validatePassword } from 'firebase/auth';
+import { useValidation } from '../hooks/useValidation';
 
 export const RegisterPage = () => {
-  const [passValidation, setPassValidation] = useState('');
-  const [pressedSubmit, setPressedSubmit] = useState(false);
   const emailId = useId();
   const passwordId = useId();
   const navigate = useNavigate();
-  const { startCreateUserEmailPass, errorMessage } = useAuthContext();
+  const { isDark } = useThemeContext();
+  const { startCreateUserEmailPass } = useAuthContext();
   const { email, password, handleChangeInput } = useForm({
     email: '',
     password: '',
   });
-  const { isDark } = useThemeContext();
-
+  const {
+    errorMessageInput,
+    setErrorMessageInput,
+    validateInputs,
+    messageRef,
+  } = useValidation();
+  console.log(errorMessageInput);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setPressedSubmit(true);
-    const validation = inputValidation(email, password);
-    if (validation) {
-      setPassValidation(validation);
-      return;
-    }
-    await startCreateUserEmailPass(email, password);
+    const isErrorFromInput = validateInputs(email, password);
+    setErrorMessageInput(isErrorFromInput);
+    if (isErrorFromInput) return;
+    const res = await startCreateUserEmailPass(email, password);
+    if (!res) return;
     navigate('/auth/login');
   };
-
-  useEffect(() => {
-    setTimeout(() => {
-      setPressedSubmit(false);
-      setPassValidation('');
-    }, 3000);
-  }, [pressedSubmit]);
 
   return (
     <>
@@ -47,9 +39,12 @@ export const RegisterPage = () => {
         <form
           className={isDark ? 'form-dark' : 'form-light'}
           onSubmit={handleSubmit}>
-          {passValidation && <p className='danger'>{passValidation}</p>}
-          {errorMessage && <p className='danger'>{errorMessage}</p>}
-          {/* {passValidation && <p className='danger'>{passValidation}</p>} */}
+          {errorMessageInput && (
+            <p className='danger' ref={messageRef}>
+              {errorMessageInput}
+            </p>
+          )}
+
           <h1> Registrate</h1>
           <label htmlFor={emailId}>Email</label>
           <input

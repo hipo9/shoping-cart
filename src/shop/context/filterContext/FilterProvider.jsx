@@ -3,12 +3,12 @@ import { FilterContext } from './FiltersContext';
 
 // eslint-disable-next-line react/prop-types
 export const FilterProvider = ({ children }) => {
-  const { filters, setFilters, prodsFiltered, setMinPrice, setCategory } =
+  const { filters, setFilters, filterProducts, setMinPrice, setCategory } =
     useFilters();
 
   return (
     <FilterContext.Provider
-      value={{ filters, setFilters, prodsFiltered, setMinPrice, setCategory }}>
+      value={{ filters, setFilters, filterProducts, setMinPrice, setCategory }}>
       {children}
     </FilterContext.Provider>
   );
