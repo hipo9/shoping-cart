@@ -3,7 +3,6 @@ import { RemoveFromCartIcon } from '../../components/Iconos';
 import { roundNumber } from '../utilities/roundNumber';
 import { useThemeContext } from '../context/themeContext';
 
-// eslint-disable-next-line react/prop-types, react/display-name
 export const Cart = () => {
   const { isDark } = useThemeContext();
   const {
@@ -14,13 +13,12 @@ export const Cart = () => {
     clearCart,
     total,
   } = useCartContext();
-  console.log('render cart');
 
   return (
     <>
       <section className={`cart ${isDark ? 'layout__dark' : 'layout__light'}`}>
         <header className='cart__header'></header>
-        {!cart ? (
+        {!cart.length ? (
           <h2 className='cart__title'>Carrito vacio</h2>
         ) : (
           <>

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { CartContext } from '../context/CartContext/CartContext';
 import { AddToCartIcon, RemoveFromCartIcon } from '../../components/Iconos';
 import { useThemeContext } from '../context/themeContext/ThemeContext';
@@ -9,8 +9,13 @@ export const Product = ({ product }) => {
   const { cart, addItemtoCart, removeFromCart } = useContext(CartContext);
   // eslint-disable-next-line react/prop-types
   const { title, image, category, price, id } = product;
-   const checkProductIncart = () => cart?.some((item) => item.id === id);
-   const isCheckProductIncart= checkProductIncart();
+
+  const isCheckProductIncart = useMemo(
+    () => cart?.some((item) => item.id === id),
+    [cart]
+  );
+
+  // const isCheckProductIncart = checkProductIncart();
 
   return (
     <ul className={`product ${isDark ? 'border-light' : 'border-dark'}`}>

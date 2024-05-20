@@ -9,13 +9,12 @@ import {
 const init = () => {
   return getLocalStorage('cart');
 };
-
+const initialState = [];
 export const useCart = () => {
-  const [cart, dispatch] = useReducer(cartReducer, [{}], init);  
-  console.log(cart);
+  const [cart, dispatch] = useReducer(cartReducer, initialState, init);
+
   const calcTotal = () => {
     if (!cart) return 0;
-
     let res = cart.reduce(
       (total, item) => total + item.price * item.quantity,
       0
@@ -60,7 +59,7 @@ export const useCart = () => {
   }, [cart]);
 
   return {
-    cart: cart,
+    cart: cart || [],
     addItemtoCart,
     removeFromCart,
     decreaseQuantity,
