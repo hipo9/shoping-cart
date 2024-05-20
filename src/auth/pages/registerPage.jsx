@@ -48,7 +48,7 @@ export const RegisterPage = () => {
           <h1> Registrate</h1>
           <label htmlFor={emailId}>Email</label>
           <input
-            type='text'
+            type='email'
             name='email'
             id={emailId}
             placeholder='example@email.com'
