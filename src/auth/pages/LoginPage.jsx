@@ -32,9 +32,10 @@ export const LoginPage = () => {
     const isErrorFromInput = validateInputs(email, password);
     setErrorMessageInput(isErrorFromInput);
     if (isErrorFromInput) return;
-      await startLoginWithEmailPass(email, password);
-   
+    await startLoginWithEmailPass(email, password);
+    navigate('/products');
   };
+
   //=====================================
   const loginWithGoogle = async () => {
     await startLoginWithGoogle();

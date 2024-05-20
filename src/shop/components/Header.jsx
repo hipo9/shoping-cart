@@ -49,8 +49,6 @@ export const Header = () => {
       </button>
 
       {toggle && <Cart />}
-
-      {/* { <Cart toggle={toggle} />}  */}
     </header>
   );
 };

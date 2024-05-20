@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useReducer, useState } from 'react';
+import { useEffect, useMemo, useReducer } from 'react';
 import { cartReducer } from '../context/CartContext/cartReducer';
 import { CART_ACTION_TYPES } from '../context/CartContext/actionTypes';
 import {
@@ -11,8 +11,8 @@ const init = () => {
 };
 
 export const useCart = () => {
-  const [cart, dispatch] = useReducer(cartReducer, [], init);
-
+  const [cart, dispatch] = useReducer(cartReducer, [{}], init);  
+  console.log(cart);
   const calcTotal = () => {
     if (!cart) return 0;
 
@@ -58,9 +58,9 @@ export const useCart = () => {
   useEffect(() => {
     saveLocalStorage(cart, 'cart');
   }, [cart]);
-  console.log(total);
+
   return {
-    cart,
+    cart: cart,
     addItemtoCart,
     removeFromCart,
     decreaseQuantity,

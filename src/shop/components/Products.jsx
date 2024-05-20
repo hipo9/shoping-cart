@@ -4,6 +4,7 @@ import { Product } from './Product';
 
 // eslint-disable-next-line react/prop-types
 export const Products = ({ products }) => {
+  
   return (
     <>
       <main className='products container'>

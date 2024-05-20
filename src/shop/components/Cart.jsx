@@ -2,10 +2,10 @@ import { useCartContext } from '../context/CartContext/CartContext';
 import { RemoveFromCartIcon } from '../../components/Iconos';
 import { roundNumber } from '../utilities/roundNumber';
 import { useThemeContext } from '../context/themeContext';
-import { useEffect, useMemo, useState } from 'react';
 
 // eslint-disable-next-line react/prop-types, react/display-name
 export const Cart = () => {
+  const { isDark } = useThemeContext();
   const {
     cart,
     removeFromCart,
@@ -14,17 +14,13 @@ export const Cart = () => {
     clearCart,
     total,
   } = useCartContext();
-  const { isDark } = useThemeContext();
-  console.log(total);
+  console.log('render cart');
 
-  // cart.reduce((total, item) => total + item.price * item.quantity, 0)
-  console.log(cart);
   return (
     <>
       <section className={`cart ${isDark ? 'layout__dark' : 'layout__light'}`}>
-        {/* <header className='cart__header'></header> */}
         <header className='cart__header'></header>
-        {cart.length === 0 ? (
+        {!cart ? (
           <h2 className='cart__title'>Carrito vacio</h2>
         ) : (
           <>

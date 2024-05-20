@@ -9,7 +9,8 @@ export const Product = ({ product }) => {
   const { cart, addItemtoCart, removeFromCart } = useContext(CartContext);
   // eslint-disable-next-line react/prop-types
   const { title, image, category, price, id } = product;
-  const checkProductIncart = () => cart.some((item) => item.id === id);
+   const checkProductIncart = () => cart?.some((item) => item.id === id);
+   const isCheckProductIncart= checkProductIncart();
 
   return (
     <ul className={`product ${isDark ? 'border-light' : 'border-dark'}`}>
@@ -34,19 +35,17 @@ export const Product = ({ product }) => {
 
         <button
           onClick={() =>
-            checkProductIncart() ? removeFromCart(id) : addItemtoCart(product)
+            isCheckProductIncart ? removeFromCart(id) : addItemtoCart(product)
           }
           className={`product__add-btn ${
-            checkProductIncart() ? 'btn-danger' : 'btn-primary'
+            isCheckProductIncart ? 'btn-danger' : 'btn-primary'
           }`}>
-          {checkProductIncart() ? <RemoveFromCartIcon /> : <AddToCartIcon />}
+          {isCheckProductIncart ? <RemoveFromCartIcon /> : <AddToCartIcon />}
           <label className='product__label-btn'>
-            {checkProductIncart() ? 'Cancel' : 'Add cart'}
+            {isCheckProductIncart ? 'Cancel' : 'Add cart'}
           </label>
         </button>
       </div>
-
-      {/* <button onClick={() => addItemtoCart(product)}>Add cart</button> */}
     </ul>
   );
 };
