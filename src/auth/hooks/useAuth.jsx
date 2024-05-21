@@ -37,10 +37,9 @@ export const useAuth = () => {
       }, 1500);
       return false;
     }
-    dispatch({
-      type: AUTH_ACTION_TYPES.USER_CREATED,
-      payload: 'User created successfuly',
-    });
+    dispatch({type: AUTH_ACTION_TYPES.USER_CREATED,payload: 'User created successfuly',});
+    setTimeout(() => {dispatch({ type: AUTH_ACTION_TYPES.USER_CREATED, payload: null });
+    }, 1500);
     saveLocalStorage(null, 'user');
     return true;
   };

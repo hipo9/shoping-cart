@@ -36,8 +36,6 @@ export const RegisterPage = () => {
   return (
     <>
       <AuthLayout>
-        {!succesMessage && <h2>Se ha creado el usuario con exito</h2>}
-
         <form
           className={isDark ? 'form-dark' : 'form-light'}
           onSubmit={handleSubmit}>
@@ -46,7 +44,7 @@ export const RegisterPage = () => {
               {errorMessageInput}
             </p>
           )}
-
+          {succesMessage && <p className='success'>{succesMessage}</p>}
           <h1> Registrate</h1>
           <label htmlFor={emailId}>Email</label>
           <input

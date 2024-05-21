@@ -6,8 +6,14 @@
     background-color: v.$danger;
     text-align: center;
     padding: 1rem;
-    
-    
+
+}
+
+.success {
+    background-color: v.$success;
+    text-align: center;
+    padding: 1rem;
+
 }
 
 .border-light {
@@ -22,5 +28,5 @@
     width: 90%;
     max-width: 120rem;
     margin: 0 auto;
-    
+
 }
