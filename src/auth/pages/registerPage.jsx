@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks/useForm';
 import { useThemeContext } from '../../shop/context/themeContext';
@@ -9,9 +9,9 @@ import { useValidation } from '../hooks/useValidation';
 export const RegisterPage = () => {
   const emailId = useId();
   const passwordId = useId();
-  const navigate = useNavigate();
+
   const { isDark } = useThemeContext();
-  const { startCreateUserEmailPass } = useAuthContext();
+  const { startCreateUserEmailPass, succesMessage } = useAuthContext();
   const { email, password, handleChangeInput } = useForm({
     email: '',
     password: '',
@@ -22,7 +22,7 @@ export const RegisterPage = () => {
     validateInputs,
     messageRef,
   } = useValidation();
-  console.log(errorMessageInput);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isErrorFromInput = validateInputs(email, password);
@@ -30,12 +30,14 @@ export const RegisterPage = () => {
     if (isErrorFromInput) return;
     const res = await startCreateUserEmailPass(email, password);
     if (!res) return;
-    navigate('/auth/login');
+    // navigate('/auth/login');
   };
 
   return (
     <>
       <AuthLayout>
+        {!succesMessage && <h2>Se ha creado el usuario con exito</h2>}
+
         <form
           className={isDark ? 'form-dark' : 'form-light'}
           onSubmit={handleSubmit}>
@@ -65,7 +67,7 @@ export const RegisterPage = () => {
             onChange={handleChangeInput}
             value={password}
           />
-          <button type='submit'>Sign Up test</button>
+          <button type='submit'>Sign Up </button>
           <div>
             <p>Already have an account?</p>
             <Link to={'/auth/login'}>Log In</Link>
