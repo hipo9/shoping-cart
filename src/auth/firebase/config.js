@@ -1,16 +1,25 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 // import { GoogleAuthProvider, getAuth } from 'firebase/auth';
+import { getEnvVariables } from '../../helpers/getEnvVariable';
+const {
+  VITE_APP_FIREBASE_API_KEY,
+  VITE_APP_FIREBASE_AUTH_DOMAIN,
+  VITE_APP_FIREBASE_PROJECT_ID,
+  VITE_APP_FIREBASE_STORAGE_BUCKET,
+  VITE_APP_FIREBASE_MESSAGING_SENDER_ID,
+  VITE_APP_FIREBASE_APP_ID,
+  VITE_APP_FIREBASE_MEASUREMENT_ID,
+} = getEnvVariables();
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBP-dVa6FOh95hQUxRhGJaNvDa8Z-A6KEM',
-  authDomain: 'shoping-cart-aa94c.firebaseapp.com',
-  projectId: 'shoping-cart-aa94c',
-  storageBucket: 'shoping-cart-aa94c.appspot.com',
-  messagingSenderId: '920184593335',
-  appId: '1:920184593335:web:76e0a70c8685be796e2632',
-  measurementId: 'G-Z815D3J49G',
-  
+  apiKey: VITE_APP_FIREBASE_API_KEY,
+  authDomain: VITE_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: VITE_APP_FIREBASE_PROJECT_ID,
+  storageBucket: VITE_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: VITE_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: VITE_APP_FIREBASE_APP_ID,
+  measurementId: VITE_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 // Inicializar Firebase
